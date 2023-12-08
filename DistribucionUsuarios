@@ -1,0 +1,61 @@
+close all
+clear all
+clc
+
+L = linspace(0,2*pi,7);
+R = 1;
+xv = R*cos(L)';
+yv = R*sin(L)';
+users = 250;
+xq = randn(users,1);
+yq = randn(users,1);
+in = inpolygon(xq,yq,xv,yv);
+
+figure
+plot(xv,yv,'b') % first polygon
+axis equal
+hold on
+plot(xq(in),yq(in),'r+') % points inside
+hold on 
+
+xc = 3/2*R;
+yc = sqrt(3)/2*R;
+plot(xv+xc,yv+yc,'b') % second polygon
+hold on
+plot(xq(in)+xc,yq(in)+yc,'g+') % points inside
+
+xc = 0;
+yc = sqrt(3)*R;
+plot(xv+xc,yv+yc,'b') % third polygon
+hold on
+plot(xq(in)+xc,yq(in)+yc,'c+') % points inside
+
+xc = -3/2*R;
+yc = sqrt(3)/2*R;
+plot(xv+xc,yv+yc,'b') % fourth polygon
+hold on
+plot(xq(in)+xc,yq(in)+yc,'m+') % points inside
+
+xc = -3/2*R;
+yc = -sqrt(3)/2*R;
+plot(xv+xc,yv+yc,'b') % fifth polygon
+hold on
+plot(xq(in)+xc,yq(in)+yc,'y+') % points inside
+
+xc = 0;
+yc = -sqrt(3)*R;
+plot(xv+xc,yv+yc,'b') % sixth polygon
+hold on
+plot(xq(in)+xc,yq(in)+yc,'k+') % points inside
+
+xc = 3/2*R;
+yc = -sqrt(3)/2*R;
+plot(xv+xc,yv+yc,'b') % seventh polygon
+hold on
+plot(xq(in)+xc,yq(in)+yc,'b+') % points inside
+
+hold off
+
+%cada usuario se debe asociar con la EB que tenga menos pérdidas (pérdidas
+%por distancia y pérdidas por ensombrecimiento: v.a con distribución normal y media = 0 y desviación estándar sigma)
+%una variable distinta por cada combinación entre cierto usuario y cada EB
